@@ -17,21 +17,21 @@ export class UserRouter {
 
         this.router.post('/login', userController.login);   // <- body must contain "username" and "password"
 
-        this.router.post('/register', (req: Request, res: Response, next) => {
+        this.router.post('/register', (req: Request, res: Response, next: NextFunction) => {
 
             let userData: IUserRegisterBody = req.body;
 
-            userController.register(userData, (err: any, result: any) => {
+            userController.createUser(userData, (err: any, result: any) => {
                 if (err) next(err);
                 else res.status(200).json(result);
             });
         });
 
-        this.router.put('/update/:id', (req: Request, res: Response, next) => {
+        this.router.put('/update/:id', (req: Request, res: Response, next: NextFunction) => {
 
             let userData: IUserUpdateBody = req.body;
 
-            userController.update(req.params.id, userData, (err: any, result: IUserModel) => {
+            userController.updateUser(req.params.id, userData, (err: any, result: IUserModel) => {
                 if (err) next(err);
                 else res.status(200).json(result);
             });

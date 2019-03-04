@@ -2,8 +2,12 @@
 # HTTP/WS Server application template
 ## Based on node.js and express.js
 
+
+
 ### Description
 Basic http + web sockets server application supporting logging (using winston.js) and unit tests (using mocha/chai).
+
+
 
 ### Usage
 
@@ -19,21 +23,25 @@ Basic http + web sockets server application supporting logging (using winston.js
 
 * ```npm run build:watch``` compile to /dist + watch for source changes
 
+
+
 ### DB Management
-* Run MongoDB server without authorization
-```mongod```
 
-* Run MongoDB server with authorization
-```mongod --auth```
+*   Run MongoDB server without authorization
+    ```mongod```
+    
+*   Run MongoDB server with authorization
+    ```mongod --auth```
 
-* Create database
-```mongo < scripts/createDatabase.js```
+*   Setup database
 
-* Populate database
-```mongo < scripts/populateDatabase.js```
+    ```scripts/setupDb.sh -h localhost -d sandbox -u root -p example```
+    
+    *   -h : Mongo process hostname
+    *   -d : Database name
+    *   -u : Mongo user
+    *   -p : Mongo password
 
-* Clear database
-```mongo < scripts/clearDatabase.js```
-
-* Connect to mongo shell
-```mongo mongodb://express-example-root:1234@localhost:27017/express-example```
+*   Connect to mongo shell
+    
+    ```mongo mongodb://express-example-root:1234@localhost:27017/express-example```

@@ -1,4 +1,3 @@
-use sandbox;
 
 db.posts.insert({
     _id: ObjectId("000000000000000000000000"),

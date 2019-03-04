@@ -5,7 +5,16 @@ import * as passport from 'passport';
 
 let User = require('../models/user').User;
 
-module.exports.update = (userId: string, userData: IUserUpdateBody, callback: (err: any, result?: IUserModel) => {}): void => {
+module.exports.getUserById = (userId: string, callback: (err: any, user?: IUserModel) => {}): void => {
+    User.findById(userId, (err: any, user: IUserModel) => {
+        if (err)
+            callback(err);
+        else
+            callback(null, user);
+    });
+};
+
+module.exports.updateUser = (userId: string, userData: IUserUpdateBody, callback: (err: any, result?: IUserModel) => {}): void => {
     User.findById(userId, (err: any, user: IUserModel) => {
         if (err)
             callback(err);
@@ -13,6 +22,7 @@ module.exports.update = (userId: string, userData: IUserUpdateBody, callback: (e
             user.firstName = userData.firstName ? userData.firstName : user.firstName;
             user.lastName = userData.lastName ? userData.lastName : user.lastName;
             user.email = userData.email ? userData.email : user.email;
+            user.roleIds = userData.roleIds ? userData.roleIds : user.roleIds;
             user.updatePassword = userData.updatePassword || false;
 
             user.save((err: any, updatedUser: IUserModel) => {
@@ -25,13 +35,14 @@ module.exports.update = (userId: string, userData: IUserUpdateBody, callback: (e
     });
 };
 
-module.exports.register = (userData: IUserRegisterBody, callback: (err: any, result?: {token: string}) => {}): void => {
+module.exports.createUser = (userData: IUserRegisterBody, callback: (err: any, result?: {token: string}) => {}): void => {
     var user = new User();
 
     user.username = userData.username;
     user.firstName = userData.firstName;
     user.lastName = userData.lastName;
     user.email = userData.email;
+    user.roleIds = userData.roleIds || [];
     user.updatePassword = true;
 
     if (userData.password) {
@@ -74,6 +85,7 @@ export interface IUserUpdateBody {
     firstName?: string;
     lastName?: string;
     email?: string;
+    roleIds?: string[];
     updatePassword?: boolean;
 };
 
@@ -82,5 +94,6 @@ export interface IUserRegisterBody {
     firstName: string;
     lastName: string;
     email: string;
+    roleIds?: string;
     password: string;
 };

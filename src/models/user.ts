@@ -30,6 +30,10 @@ export let UserSchema: Schema = new Schema({
         type: String,
         default: ''
     },
+    roleIds: {
+        type: [String],
+        default: []
+    },
     updatePassword: {
         type: Boolean,
         default: false

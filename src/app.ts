@@ -8,6 +8,9 @@ import * as passport from 'passport';
 import IndexRouter from './routes/index';
 import PostRouter from './routes/post';
 import UserRouter from './routes/user';
+import UserGroupRouter from './routes/userGroup';
+import RoleRouter from './routes/role';
+import PermissionRouter from './routes/permission';
 
 const env = require('../config/environment');
 const logger = require('./winston');
@@ -75,6 +78,9 @@ class App {
         this.express.use('/', IndexRouter);
         this.express.use('/posts', PostRouter);
         this.express.use('/users', UserRouter);
+        this.express.use('/userGroups', UserGroupRouter);
+        this.express.use('/roles', RoleRouter);
+        this.express.use('/permissions', PermissionRouter);
 
         // 404 response
         this.express.all('*', (req: any, res: any) => {

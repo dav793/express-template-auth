@@ -4,6 +4,7 @@ export interface IUser {
     firstName?: string;
     lastName?: string;
     email?: string;
+    roleIds?: string[];
     updatePassword?: boolean;
     deleted?: boolean;
 }

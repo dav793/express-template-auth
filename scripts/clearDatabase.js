@@ -1,5 +1,4 @@
-use sandbox;
 
 db.dropUser("sandbox");
 
-db.posts.drop();
+db.dropDatabase();

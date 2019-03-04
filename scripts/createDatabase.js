@@ -1,6 +1,8 @@
-use sandbox;
 
 db.createCollection("posts");
+db.createCollection("users");
+db.createCollection("usergroups");
+db.createCollection("roles");
 
 db.createUser({
     user: "sandbox",
