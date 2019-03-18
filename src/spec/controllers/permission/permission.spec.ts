@@ -245,6 +245,8 @@ describe("permissionController => combinePermissions", () => {
             });
     });
 
+    // @todo: escribir prueba para cuando ningun rol tiene el permiso para el recurso
+
     beforeEach((done) => {
         mongoServer.createConnection().subscribe(() => {
             loadDefaultDataset().subscribe(

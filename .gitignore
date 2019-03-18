@@ -31,3 +31,7 @@ benchmarks/graphs
 dist
 log/**/*.log
 config/environment.js
+
+# IDE
+.idea
+.idea/workspace.xml
