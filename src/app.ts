@@ -93,6 +93,11 @@ class App {
         this.express.use((err, req, res, next) => {     // express error handling
             logger.error(err.stack);
 
+            if(err.name === 'UnauthorizedError')
+                logger.error(err.message);
+            else
+                logger.error(err.stack);
+
             if (res.headersSent)
                 return next(err)    // delegate to default error-handler if response has already begun being sent
 
